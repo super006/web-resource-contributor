@@ -1,0 +1,39 @@
+name: Daily Resource Submission
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # 02:00 UTC = 10:00 Beijing
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        
+    - name: Submit PRs
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SITES_CONFIG: ${{ secrets.SITES_CONFIG }}
+        TARGETS_CONFIG: ${{ secrets.TARGETS_CONFIG }}
+      run: |
+        python src/submit_pr.py
+        
+    - name: Upload logs
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: submission-logs
+        path: logs/
+        retention-days: 7

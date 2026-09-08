@@ -1,0 +1,26 @@
+# Target repositories for submissions
+# Add as GitHub Secret TARGETS_CONFIG in JSON format
+
+targets:
+  - repo: "neutraltone/awesome-stock-resources"
+    category: "PNG Resources"
+    priority: "high"
+    
+  - repo: "bradtraversy/design-resources-for-developers"
+    category: "Images"
+    priority: "high"
+    
+  - repo: "LisaDziuba/Awesome-Design-Tools"
+    category: "Stock Images"
+    priority: "medium"
+    
+  - repo: "sindresorhus/awesome"
+    category: "Graphics"
+    priority: "low"
+
+# Convert to JSON for GitHub Secret:
+# {
+#   "targets": [
+#     {"repo": "owner/name", "category": "Category Name", "priority": "high"}
+#   ]
+# }
