@@ -24,7 +24,7 @@ jobs:
         
     - name: Submit PRs
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         SITES_CONFIG: ${{ secrets.SITES_CONFIG }}
         TARGETS_CONFIG: ${{ secrets.TARGETS_CONFIG }}
       run: |
